@@ -313,7 +313,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b15566020c1dae94da7e4a14cb65ecd3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b32f3a98ac819dc478e70328cd8a6abb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -333,7 +333,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.3, y: -2.62, z: 0}
   m_LocalScale: {x: 1.9452045, y: 1.9452045, z: 1.9452045}
-  m_Children: []
+  m_Children:
+  - {fileID: 1208351662}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
