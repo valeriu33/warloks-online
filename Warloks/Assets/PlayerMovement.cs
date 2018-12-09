@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour {
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        targetPosition = transform.position;
     }
 
     void Update ()
