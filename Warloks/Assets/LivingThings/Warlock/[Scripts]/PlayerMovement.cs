@@ -6,6 +6,10 @@ public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] private float speed = 1f;
 
+    // How big can be the difference between the desired point and
+    // current pos.
+    [SerializeField] private float posEqualityTreshold = 0.2f;
+
     [Header("Amortization")]
 
     // Distance from where to start amortization.
@@ -15,6 +19,7 @@ public class PlayerMovement : MonoBehaviour {
     // This velocity is used only by SmoothDamp.
     private Vector3 velocity;
 
+    private bool followLastMouseClick = false;
     private Vector3 targetPosition;
     private Vector3 mousePos;
     private Rigidbody2D rb;
@@ -22,7 +27,6 @@ public class PlayerMovement : MonoBehaviour {
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        targetPosition = transform.position;
     }
 
     void Update ()
@@ -32,13 +36,16 @@ public class PlayerMovement : MonoBehaviour {
 	    {
 	        targetPosition = mousePos;
 	        targetPosition.z = 0;
+            followLastMouseClick = true;
         }
 	}
 
     private void FixedUpdate()
     {
         RotateToPos(mousePos);
-        MoveTowardsPos(targetPosition, Time.fixedDeltaTime);
+
+        if (followLastMouseClick)
+            MoveTowardsPos(targetPosition, Time.fixedDeltaTime);
     }
 
     private void RotateToPos(Vector3 pos)
@@ -55,32 +62,18 @@ public class PlayerMovement : MonoBehaviour {
         var delta = pos - transform.position;
         delta.z = 0;
 
-        if (Mathf.Approximately(delta.magnitude, 0))
+        if (Mathf.Abs(delta.magnitude) < posEqualityTreshold)
+        {
+            followLastMouseClick = false;
             return;
+        }
 
-        Vector3 finalPos;
+        var direction = delta.normalized;
+        var finalForce = direction * speed * deltaTime;
+
         if (delta.magnitude < amortizationTreshold)
-        {
-            finalPos = Vector3.SmoothDamp(
-                transform.position,
-                targetPosition,
-                ref velocity,
-                1 / (amortizationSpeedMult * speed));
-        }
-        else
-        {
-            var distance = speed * deltaTime;
-            var finalDistance = 0f;
+            finalForce *= amortizationSpeedMult;
 
-            if (delta.magnitude < distance)
-                finalDistance = delta.magnitude;
-            else
-                finalDistance = distance;
-
-            var direction = delta.normalized;
-            finalPos = transform.position + direction * finalDistance;
-        }
-
-        rb.MovePosition(finalPos);
+        rb.AddForce(finalForce);
     }
 }
