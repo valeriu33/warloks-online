@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Utils;
 
-public class PlayerMovement : MonoBehaviour {
-
+public class PlayerMovement : MonoBehaviour
+{
     [SerializeField] private float speed = 1f;
 
     // How big can be the difference between the desired point and
@@ -31,7 +30,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update ()
 	{
-	    mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = MouseTools.GetMousePos();
         if (Input.GetMouseButton(0))
 	    {
 	        targetPosition = mousePos;
