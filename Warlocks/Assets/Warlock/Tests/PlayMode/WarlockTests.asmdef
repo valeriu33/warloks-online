@@ -2,7 +2,7 @@
     "name": "Tests",
     "references": [
         "Warlock",
-        "Services"
+        "Shared"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"

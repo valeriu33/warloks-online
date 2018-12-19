@@ -1,8 +1,6 @@
 {
-    "name": "Warlock",
-    "references": [
-        "Shared"
-    ],
+    "name": "Shared",
+    "references": [],
     "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
