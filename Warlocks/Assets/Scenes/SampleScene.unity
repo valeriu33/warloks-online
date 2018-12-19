@@ -370,12 +370,13 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 625958124}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bb844fca601f410b9d5a0e3620994a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 570325cd3e32e41b7bc39ebb518902f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 1545328363066996, guid: 2d7a10059b63642fd8575c5babf66706,
+    type: 2}
 --- !u!114 &625958128
 MonoBehaviour:
   m_ObjectHideFlags: 0
