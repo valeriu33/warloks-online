@@ -14,7 +14,8 @@ public class SpellController : MonoBehaviour
 
     void Fire()
     {
-        var bullet = Instantiate(bulletPrefab, transform);
+        var bullet = Instantiate(bulletPrefab);
+        bullet.transform.position = transform.position;
         bullet.GetComponent<Rigidbody2D>().AddForce((Vector2) transform.up * 6, ForceMode2D.Impulse);
         Destroy(bullet, 3.0f);
     }    
