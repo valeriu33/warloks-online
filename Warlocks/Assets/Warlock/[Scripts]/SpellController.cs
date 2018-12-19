@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SepllController : MonoBehaviour
+public class SpellController : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab = null;
 
@@ -16,10 +14,7 @@ public class SepllController : MonoBehaviour
 
     void Fire()
     {
-        var bullet = (GameObject) Instantiate(
-            bulletPrefab,
-            transform.position,
-            transform.rotation);
+        var bullet = Instantiate(bulletPrefab, transform);
         bullet.GetComponent<Rigidbody2D>().AddForce((Vector2) transform.up * 6, ForceMode2D.Impulse);
         Destroy(bullet, 3.0f);
     }    
