@@ -10,9 +10,6 @@ public class PlayerMovement : MonoBehaviour
     private IUserInputManager userInputManager;
     private IMovement movement;
 
-    // This velocity is used only by SmoothDamp.
-    private Vector3 velocity;
-
     private bool followLastMouseClick = false;
     private Vector3 targetPosition;
     private Vector3 mousePos;
@@ -35,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     void Update ()
 	{
         mousePos = userInputManager.GetMousePos();
-        if (Input.GetMouseButton(0))
+        if (userInputManager.GetMouseButton(0))
 	    {
 	        targetPosition = mousePos;
 	        targetPosition.z = 0;
