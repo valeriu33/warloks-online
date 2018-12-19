@@ -21,15 +21,43 @@ public class PlayerMovementTests
     public IEnumerator TestPlayerMovesToClick()
     {
         var playerMovement = InitTestSubject();
-        var movement = new RbMovement(1, 0, 0, 1);
+        var movement = new RbMovement(10, 0, 0, 1);
         var inputManager = Substitute.For<IUserInputManager>();
         inputManager
             .GetMousePos()
-            .Returns(Vector3.up);
-
+            .Returns(Vector3.down * 10);
+        inputManager
+            .GetMouseButton(0)
+            .Returns(true);
         playerMovement.Construct(inputManager, movement);
+
+        // Wait for Start()
+        yield return null;
+
+        // Wait for it to move.
         yield return new WaitForFixedUpdate();
-        Assert.True(true);
+
+        var rb = playerMovement.GetComponent<Rigidbody2D>();
+        Assert.True(rb.velocity.y < -0.001);
+    }
+
+    [UnityTest]
+    public IEnumerator TestPlayerRotatesToMouse()
+    {
+        var playerMovement = InitTestSubject();
+        var movement = new RbMovement(0, 0, 0, 0);
+        var inputManager = Substitute.For<IUserInputManager>();
+        inputManager
+            .GetMousePos()
+            .Returns(Vector3.down);
+        playerMovement.Construct(inputManager, movement);
+
+        // Wait for Start()
+        yield return null;
+
+        // Wait for it to move
+        yield return new WaitForFixedUpdate();
+        Assert.True(Mathf.Approximately(playerMovement.transform.eulerAngles.z, 180));
     }
 
     [TearDown]
