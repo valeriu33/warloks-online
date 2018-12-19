@@ -1,0 +1,12 @@
+{
+    "name": "PlayMode",
+    "references": [
+        "Services"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
