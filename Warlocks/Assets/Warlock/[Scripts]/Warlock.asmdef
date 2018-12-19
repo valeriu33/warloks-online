@@ -1,0 +1,10 @@
+{
+    "name": "Warlock",
+    "references": [
+        "Services"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
