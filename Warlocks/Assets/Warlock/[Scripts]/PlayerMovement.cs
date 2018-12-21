@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Services;
+using Shared;
 using UnityEngine;
 using Zenject;
 
@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     // DI
     private IUserInputManager userInputManager;
-    private IMovement movement;
+    [SerializeField] private RbMovement movement;
 
     private bool followLastMouseClick = false;
     private Vector3 targetPosition;
@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [Inject]
     public void Construct(
         IUserInputManager userInputManager,
-        IMovement movement)
+        RbMovement movement)
     {
         this.userInputManager = userInputManager;
         this.movement = movement;
@@ -32,13 +32,14 @@ public class PlayerMovement : MonoBehaviour
     void Update ()
 	{
         mousePos = userInputManager.GetMousePos();
-        if (userInputManager.GetMouseButton(0))
+        if (userInputManager.GetMouseButton(1))
 	    {
 	        targetPosition = mousePos;
 	        targetPosition.z = 0;
             followLastMouseClick = true;
         }
-	}
+
+    }
 
     private void FixedUpdate()
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Services
+namespace Shared
 {
     public class UserInputManager : IUserInputManager
     {
@@ -11,7 +11,9 @@ namespace Services
 
         public Vector3 GetMousePos()
         {
-            return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            pos.z = 0;
+            return pos;
         }
     }
 }

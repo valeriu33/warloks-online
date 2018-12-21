@@ -1,4 +1,4 @@
-using Services;
+using Shared;
 using UnityEngine;
 using Zenject;
 
@@ -11,9 +11,8 @@ public class RbMovementInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<IMovement>()
-            .To<RbMovement>()
-            .AsSingle()
+        Container.Bind<RbMovement>()
+            .AsTransient()
             .WithArguments(velocity, amortizationTreshold, amortizationSpeedMult, posEqualityTreshold);
     }
 }

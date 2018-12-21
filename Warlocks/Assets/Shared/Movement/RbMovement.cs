@@ -1,19 +1,21 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
-namespace Services
+namespace Shared
 {
-    public class RbMovement : IMovement
+    [Serializable]
+    public class RbMovement
     {
         // In other words - the speed.
-        public float Velocity { get; private set; }
+        public float velocity;
 
         // Distance from where to start amortization.
-        public float AmortizationTreshold { get; private set; }
-        public float AmortizationSpeedMult { get; private set; }
+        public float amortizationTreshold;
+        public float amortizationSpeedMult;
 
         // Defines the treshold of equality between two numbers.
-        public float PosEqualityTreshold { get; private set; }
+        public float posEqualityTreshold;
 
         public RbMovement(
             float velocity,
@@ -21,19 +23,19 @@ namespace Services
             float amortizationSpeedMult,
             float posEqualityTreshold)
         {
-            this.Velocity = velocity;
-            this.AmortizationTreshold = amortizationTreshold;
-            this.AmortizationSpeedMult = amortizationSpeedMult;
-            this.PosEqualityTreshold = posEqualityTreshold;
+            this.velocity = velocity;
+            this.amortizationTreshold = amortizationTreshold;
+            this.amortizationSpeedMult = amortizationSpeedMult;
+            this.posEqualityTreshold = posEqualityTreshold;
         }
 
         private Vector3 ComputeForce(Vector3 delta, float deltaTime)
         {
             var direction = delta.normalized;
-            var finalForce = direction * Velocity * deltaTime;
+            var finalForce = direction * velocity * deltaTime;
 
-            if (delta.magnitude < AmortizationTreshold)
-                finalForce *= AmortizationSpeedMult;
+            if (delta.magnitude < amortizationTreshold)
+                finalForce *= amortizationSpeedMult;
 
             return finalForce;
         }
@@ -43,7 +45,7 @@ namespace Services
             var delta = pos - rb.transform.position;
             delta.z = 0;
 
-            if (Mathf.Abs(delta.magnitude) < PosEqualityTreshold)
+            if (Mathf.Abs(delta.magnitude) < posEqualityTreshold)
                 return true;
 
             rb.AddForce(ComputeForce(delta, deltaTime));

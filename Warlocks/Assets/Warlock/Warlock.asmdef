@@ -1,7 +1,8 @@
 {
     "name": "Warlock",
     "references": [
-        "Shared"
+        "Shared",
+        "Zenject"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],

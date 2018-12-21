@@ -3,7 +3,7 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 using NSubstitute;
-using Services;
+using Shared;
 
 public class PlayerMovementTests
 {
@@ -27,7 +27,7 @@ public class PlayerMovementTests
             .GetMousePos()
             .Returns(Vector3.down * 10);
         inputManager
-            .GetMouseButton(0)
+            .GetMouseButton(1)
             .Returns(true);
         playerMovement.Construct(inputManager, movement);
 

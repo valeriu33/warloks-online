@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Services
+namespace Shared
 {
     public interface IUserInputManager
     {

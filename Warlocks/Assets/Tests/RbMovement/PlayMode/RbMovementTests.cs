@@ -2,7 +2,7 @@
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
-using Services;
+using Shared;
 
 public class RbMovementTests
 {
@@ -70,7 +70,7 @@ public class RbMovementTests
         var amortizatedVel = rb.velocity.magnitude;
 
         Assert.True(Mathf.Approximately(
-            velBeforeAmortization * movement.AmortizationSpeedMult,
+            velBeforeAmortization * movement.amortizationSpeedMult,
             amortizatedVel));
     }
 
