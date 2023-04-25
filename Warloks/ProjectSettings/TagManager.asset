@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1228589999
+    locked: 0
+  - name: Obstacle
+    uniqueID: 4176009049
+    locked: 0
+  - name: Player
+    uniqueID: 3987189033
+    locked: 0
+  - name: Missle
+    uniqueID: 1280062051
+    locked: 0
+  - name: UI
+    uniqueID: 3942470997
+    locked: 0
